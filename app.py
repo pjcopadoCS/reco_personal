@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, flash, redirect, url_for
 from flask_login import LoginManager
 
@@ -39,6 +40,16 @@ def crear_app():
     return app
 
 
+# if __name__ == "__main__":
+#     app = crear_app()
+#     app.run(debug=True)
+
+
+app=None
 if __name__ == "__main__":
     app = crear_app()
-    app.run(debug=True) 
+    app.run(debug=True)
+else:
+    app = crear_app()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
