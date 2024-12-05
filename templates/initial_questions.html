@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Qüestionari</h1>
+	<form method="post">
+		<br/>
+		<fieldset class="row mb-3">
+			<legend class="row-form-label">Amb quin sexe t'identifiques?</legend>
+			<div class="col">
+				<div class="form-check pb-1">
+					<input class="form-check-input" type="radio" name="question1" value="Home" id="q1_option1" required>
+					<label class="form-check-label" for="q1_option1">
+						Home
+					</label>
+				</div>
+				<div class="form-check pb-1">
+					<input class="form-check-input" type="radio" name="question1" value="Dona" id="q1_option2" required>
+					<label class="form-check-label" for="q1_option2">
+						Dona
+					</label>
+				</div>
+				<div class="form-check pb-1">
+					<input class="form-check-input" type="radio" name="question1" value="Altres" id="q1_option3" required>
+					<label class="form-check-label" for="q1_option3">
+						Altres
+					</label>
+				</div>
+			</div>	
+		</fieldset>
+
+		<fieldset class="row mb-3">
+			<legend class="row-form-label">Amb quina edat t'identifiques?</legend>
+			<div class="col">
+				<div class="form-check pb-1">
+					<input class="form-check-input" type="radio" name="question2" value="Jove" id="q2_option1" required>
+					<label class="form-check-label" for="q2_option1">
+						Jove
+					</label>
+				</div>
+				<div class="form-check pb-1">
+					<input class="form-check-input" type="radio" name="question2" value="Mitjana edat" id="q2_option2" required>
+					<label class="form-check-label" for="q2_option2">
+						Mitjana edat
+					</label>
+				</div>
+				<div class="form-check pb-1">
+					<input class="form-check-input" type="radio" name="question2" value="Gran" id="q2_option3" required>
+					<label class="form-check-label" for="q2_option3">
+						Gran
+					</label>
+				</div>
+			</div>	
+		</fieldset>
+
+		<fieldset class="row mb-3">
+			<legend class="row-form-label">Amb quin o quins perfils et sents més identificat?</legend>
+			<div class="col">
+				<div class="form-check pb-1">
+					<input class="form-check-input" type="checkbox" name="question3" value="Expert" id="q3_option1">
+					<label class="form-check-label" for="q3_option1">
+						Expert
+					</label>
+					<div class="form-text">
+						Tens un ampli coneixement sobre el món del vi i t'agrada tastar diferents tipus i estils de vins. 
+						<br/>
+						Busques vins de qualitat, amb personalitat i prestigi.
+					</div>
+				</div>
+				<div class="form-check pb-1">
+					<input class="form-check-input" type="checkbox" name="question3" value="Curiós" id="q3_option2" >
+					<label class="form-check-label" for="q3_option2">
+						Curiós
+					</label>
+					<div class="form-text">
+						Tens interès per aprendre sobre el vi i tastar noves opcions.
+						<br/>
+						Busques vins que et sorprenguin, que t'aportin alguna cosa diferent i que et permetin ampliar el paladar.
+					</div>
+				</div>
+				<div class="form-check pb-1">
+					<input class="form-check-input" type="checkbox" name="question3" value="Pragmàtic" id="q3_option3">
+					<label class="form-check-label" for="q3_option3">
+						Pragmàtic
+					</label>
+					<div class="form-text">
+						Busques vins que compleixin les teves expectatives i que t'ofereixin una bona relació qualitat-preu.
+						<br/>
+						No t'importa gaire l'origen, la varietat o l'estil del vi, sempre que sigui del teu gust i s'adapti al teu pressupost.
+					</div>
+				</div>
+				<div class="form-check pb-1">
+					<input class="form-check-input" type="checkbox" name="question3" value="Ocasional" id="q3_option4">
+					<label class="form-check-label" for="q3_option4">
+						Ocasional
+					</label>
+					<div class="form-text">
+						No tens gaire afició pel vi i el consumeixes de manera esporàdica o per compromís.
+						<br/>
+						No tens massa coneixement per triar un vi i prefereixes que et recomanin vins els amics o els experts.
+					</div>
+				</div>
+			</div>	
+		</fieldset>
+
+		<button type="submit" class="btn btn-primary mb-5">Envia</button>
+	</form>
+{% endblock %}

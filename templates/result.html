@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <style>
+    .spinner-container {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+    }
+  </style>
+  <h1>Resultats</h1>
+  <div class="spinner-container">
+    <div class="spinner-border" id="loadingSpinner" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <table id="resultats" class="table table-striped table-hover" style="display:none;">
+    <thead>
+      <tr class="table-primary">
+        <th scope="col">Codi</th>
+        <th scope="col">Títol</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Any</th>
+        <th scope="col">País</th>
+        <th scope="col">Regió</th>
+        <th scope="col">Alcohol</th>
+        <th scope="col">Preu</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      {% for wine in wines %}
+        <tr>
+          <th scope="row">{{ wine.code }}</th>
+          <td>{{ wine.name }}</td>
+          <td>{{ wine.category.value }}</td>
+          {% if wine.year %}
+            <td>{{ wine.year }}</td>
+          {% else %}
+            <td> - </td>
+          {% endif %}
+          <td>{{ wine.country }}</td>
+          {% if wine.region %}
+            <td>{{ wine.region }}</td>
+          {% else %}
+            <td> - </td>
+          {% endif %}
+          <td>{{ wine.alcohol }}%</td>
+          <td>{{ wine.price }}€</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
+  
+  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+  <script>
+    $(document).ready( function () {
+      $('#resultats').DataTable(
+        {
+          language: {
+              url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/ca.json',
+          },
+        }
+      );
+      $('#resultats').fadeIn('slow');
+      $('#loadingSpinner').hide();
+    });
+  </script>
+{% endblock %}
