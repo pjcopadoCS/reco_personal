@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Inserir vins</h2>
+  <form method="POST">
+    <div class="mb-3 col-4">
+      <label for="wine" class="form-label mt-2">Codi del vi</label>
+      <input type="text" class="form-control" id="wine" name="wine" required>
+    </div>
+    <button type="submit" class="btn btn-primary mb-4" name="add">Inserir el vi</button>
+  </form>
+  <h3>Vins comprats per l'usuari {{ current_user.username.capitalize() }}:</h3>
+  <div class="col mt-3">
+    <ul class="list-group list-group-flush">
+      {% for wine in wines %}
+        <li class="list-group-item">
+          <p><b>Codi: </b>{{ wine.code }}</p>
+          <p><b>Nom: </b>{{ wine.name }}</p>
+          <form method="POST" style="display:inline;">
+            <input type="hidden" name="wine" value="{{ wine.code }}">
+            <button type="submit" class="btn btn-outline-danger btn-sm mb-3" name="remove">Elimina</button>
+        </form>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

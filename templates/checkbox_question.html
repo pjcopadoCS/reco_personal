@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>{{ title }}</h1>
+	<form method="post">
+		<br/>
+		<fieldset class="row mb-3">
+			<legend class="row-form-label">{{ question }}</legend>
+			<div class="col">
+				<div class="form-check pb-1">
+					<input class="form-check-input select-all" type="checkbox" id="select-all">
+					<label class="form-check-label" style="color:gray;" for="select-all">
+							- Selecciona tot -
+					</label>
+				</div>
+				{% for value in values %}
+					<div class="form-check pb-1">
+							<input class="form-check-input category-option" type="checkbox" name="question" value="{{ value }}" id="option{{ loop.index }}">
+							<label class="form-check-label" for="option{{ loop.index }}">
+									{{ value }}
+							</label>
+					</div>
+				{% endfor %}
+			</div>	
+		</fieldset>
+		{% if not last %}
+			<button type="submit" name="next" class="btn btn-primary mb-5">Següent</button>
+		{% endif %}
+			<button type="submit" name="result" class="btn btn-primary mb-5 ms-3">Recomana</button>
+		{% if not last %}
+			<button type="submit" name="skip" class="btn btn-secondary mb-5 ms-3">Saltar pregunta</button>
+		{% endif %}
+	</form>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+				const selectAllCheckbox = document.getElementById('select-all');
+				const categoryCheckboxes = document.querySelectorAll('.category-option');
+		
+				selectAllCheckbox.addEventListener('change', function () {
+						const isChecked = selectAllCheckbox.checked;
+						categoryCheckboxes.forEach(function (checkbox) {
+								checkbox.checked = isChecked;
+						});
+				});
+		
+				categoryCheckboxes.forEach(function (checkbox) {
+						checkbox.addEventListener('change', function () {
+								if (!this.checked) {
+										selectAllCheckbox.checked = false;
+								} else if (Array.from(categoryCheckboxes).every(cb => cb.checked)) {
+										selectAllCheckbox.checked = true;
+								}
+						});
+				});
+		});
+		</script>
+{% endblock %}

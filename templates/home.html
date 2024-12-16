@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Benvingut al Recomanador personalitzat de vins</h1>
+	<div class="row mt-4">
+		<div class="col-auto">
+			<a href="{{ url_for('questions.recom_question1') }}" class="btn btn-primary" role="button">Accedeix al recomanador</a>
+		</div>
+		<!--<div class="col-auto">
+			<a href="{{ url_for('purchases.insert_delete_wines') }}" class="btn btn-secondary" role="button">Insereix els vins comprats</a>
+		</div>-->
+	</div>
+	
+{% endblock %}
