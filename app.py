@@ -1,8 +1,11 @@
 import os
-from flask import Flask, render_template, flash, redirect, url_for
+from flask_admin import Admin
 from flask_login import LoginManager
+from flask_admin.contrib.sqla import ModelView
+from flask import Flask, render_template, flash, redirect, url_for
 
-from models import db, User
+
+from models import db, User, Wine
 from user_management import users_bp
 from questions import questions_bp
 from purchases import purchases_bp
@@ -16,9 +19,15 @@ def crear_app():
     app.register_blueprint(users_bp)
     app.register_blueprint(questions_bp)
     app.register_blueprint(purchases_bp)
+   
 
     db.init_app(app)
     login_manager = LoginManager(app)
+    
+    # Set up Flask-Admin
+    admin = Admin(app, name='MyAdmin', template_mode='bootstrap4')
+    admin.add_view(ModelView(User, db.session))
+    admin.add_view(ModelView(Wine, db.session))
 
 
     @login_manager.user_loader

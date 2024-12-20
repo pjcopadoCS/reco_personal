@@ -165,9 +165,9 @@ def recom_question_range():
         body = int(request.form.get('Body'))
 
         target_values = {
-            0: (0, 2),  # valors propers a 0
-            1: (3, 7),  # valors propers a 5
-            2: (8, 10)  # valors propers a 10
+            0: (1, 3),  # valors propers a 1
+            1: (4, 6),  # valors propers a 5
+            2: (7, 10)  # valors propers a 10
         }
 
         aroma_range = target_values[aroma]
