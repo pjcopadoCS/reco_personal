@@ -1,9 +1,12 @@
 import pandas as pd
 from flask import Flask
-from models import Food, Grape, Wine, db
+from models import Food, Grape, Wine, User, db, Compras
 from constants import translation_dict
+from werkzeug.security import generate_password_hash, check_password_hash
 
 df = pd.read_excel('wines_dataset.xlsx')
+purchases = pd.read_excel('purchases_dataset.xlsx')
+users = pd.read_excel('users_dataset.xlsx')
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -130,8 +133,46 @@ def print_info():
     print(df.head())  
     # Proporciona estadístiques descriptives per a les columnes numèriques del DataFrame, com la mitjana, 
     # la desviació estàndard, el valor mínim, els quartils i el valor màxim.
-    print(df.describe()) 
+    print(df.describe())
+
+def create_user(row):
+    return User(username=row['username'],
+                password=generate_password_hash(row['password']),
+                has_answered=bool(row['has_answered']))
+
+def insert_users():
+    # introduce users into the database
+    with app.app_context():
+        for index, row in users.iterrows():
+            user = create_user(row)
+            db.session.add(user)
+        db.session.commit()
+
+
+# class Purchases(db.Model):
+#     __tablename__ = 'purchasess'
+#     user_id = Column(Integer, ForeignKey('users.id', ondelete='CASCADE'), primary_key=True)
+#     wine_id = Column(Integer, ForeignKey('wines.id', ondelete='CASCADE'), primary_key=True)
+
+def create_purchase(row):
+    return Compras(user_id=int(row['user_id']),
+                   o_user_id=int(row['user_id']),
+                   wine_id=int(row['wine_id']),
+                   o_wine_id=int(row['wine_id']))
+    #return purchase(user_id=row['user_id'], wine_id=row['wine_id'])
+
+def insert_purchases():
+    # introduce purchases into the database
+    with app.app_context():
+        for index, row in purchases.iterrows():
+            Compra = create_purchase(row)
+            db.session.add(Compra)
+
+        db.session.commit()
+
 
 if __name__ == "__main__":
-    # print_info()
+    print_info()
     insert_wines()
+    insert_users()
+    insert_purchases()

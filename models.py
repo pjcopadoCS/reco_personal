@@ -70,13 +70,19 @@ class Wine(db.Model):
     foods = relationship('Food', secondary='wine_foods', back_populates='wines', passive_deletes=True)
     users = relationship('User', secondary='purchases', back_populates='wines', passive_deletes=True)
 
+class Compras(db.Model):
+     __tablename__ = 'Compras'
+     wine_id = Column('user_id', Integer, ForeignKey('users.id', ondelete='CASCADE'), primary_key=True)
+     user_id = Column('wine_id', Integer,ForeignKey('wines.id', ondelete='CASCADE'), primary_key=True)
+     o_wine_id = Column('o_user_id', Integer)
+     o_user_id = Column('o_wine_id', Integer)
+
 
 purchase = Table(
-    'purchases', db.Model.metadata,
-    Column('user_id', Integer, ForeignKey('users.id', ondelete='CASCADE'), primary_key=True),
-    Column('wine_id', Integer, ForeignKey('wines.id', ondelete='CASCADE'), primary_key=True)
+     'purchases', db.Model.metadata,
+     Column('user_id', Integer, ForeignKey('users.id', ondelete='CASCADE'), primary_key=True),
+     Column('wine_id', Integer, ForeignKey('wines.id', ondelete='CASCADE'), primary_key=True)
 )
-
 
 class Grape(db.Model):
     __tablename__ = 'grapes'
