@@ -40,7 +40,7 @@ def crear_app():
     
     @login_manager.unauthorized_handler
     def unauthorized():
-        flash("Has d'iniciar sessió per accedir a aquesta funcionalitat", 'warning')
+        flash("You must log in to access this feature", 'warning')
         return redirect(url_for('home'))
 
     @app.route('/')

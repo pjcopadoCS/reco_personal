@@ -192,6 +192,9 @@ translation_dict = {
     SWEET: DOLÇ,
 }
 
+# To keep in English
+translation_dict = {k:k for k in translation_dict}
+
 
 ranges_alcohol = [
     (0, 5),

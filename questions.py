@@ -87,8 +87,8 @@ def recom_question1():
         categories = [category.value for category in Category]
         return render_template(
             QUESTION_TEMPLATE, 
-            title='Pregunta 1/11',
-            question='Estàs pensant en una categoria de vi específica?',
+            title='Question 1/11',
+            question='Are you thinking of a specific wine category?',
             values=categories,
         )
     elif request.method == 'POST':
@@ -98,7 +98,7 @@ def recom_question1():
             return redirect(url_for(get_next_question(QUESTION_1)))
         answer = request.form.getlist('question')
         if not answer:
-            flash("Has de respondre abans de continuar", 'warning')
+            flash("You must answer before continuing", 'warning')
             return redirect(url_for(QUESTION_1))
        
         filtered_wines = (
@@ -124,8 +124,8 @@ def recom_question_taste():
             return redirect(url_for(get_next_question(QUESTION_TASTE)))
         return render_template(
             QUESTION_TEMPLATE, 
-            title=f'Pregunta {QUESTION_ROUTES.index(QUESTION_TASTE)}/11',
-            question="Quin tipus de vi t'agrada?",
+            title=f'Question {QUESTION_ROUTES.index(QUESTION_TASTE)}/11',
+            question="What type of wine do you like?",
             values=tastes
         )
     
@@ -134,7 +134,7 @@ def recom_question_taste():
             return redirect(url_for(get_next_question(QUESTION_TASTE)))
         answer = request.form.getlist('question')
         if not answer:
-            flash("Has de respondre abans de continuar", 'warning')
+            flash("You must answer before continuing", 'warning')
             return redirect(url_for(QUESTION_TASTE))
         
         filtered_wines = Wine.query.filter(Wine.id.in_(session['filtered_wines']),
@@ -153,8 +153,8 @@ def recom_question_range():
     if request.method == 'GET':
         return render_template(
             'range_question.html', 
-            title=f'Pregunta {QUESTION_ROUTES.index(QUESTION_RANGE)}/11',
-            question="Defineix les característiques que més t'agraden del vi",
+            title=f'Question {QUESTION_ROUTES.index(QUESTION_RANGE)}/11',
+            question="Define the characteristics you like most about the wine",
         )
     elif request.method == 'POST':
         if 'skip' in request.form:
@@ -201,8 +201,8 @@ def recom_question_price():
             return redirect(url_for(get_next_question(QUESTION_PRICE)))
         return render_template(
             QUESTION_TEMPLATE, 
-            title=f'Pregunta {QUESTION_ROUTES.index(QUESTION_PRICE)}/11',
-            question="En quin rang de preu vols que t'ofereixi recomanació?",
+            title=f'Question {QUESTION_ROUTES.index(QUESTION_PRICE)}/11',
+            question="In which price range would you like a recommendation?",
             values=formatted_ranges
         )
     
@@ -211,7 +211,7 @@ def recom_question_price():
             return redirect(url_for(get_next_question(QUESTION_PRICE)))
         price_ranges = request.form.getlist('question')
         if not price_ranges:
-            flash("Has de respondre abans de continuar", 'warning')
+            flash("You must answer before continuing", 'warning'),
             return redirect(url_for(QUESTION_PRICE))
         
         parsed_ranges = []
@@ -249,8 +249,8 @@ def recom_question_alcohol():
             return redirect(url_for(get_next_question(QUESTION_ALCOHOL)))
         return render_template(
             QUESTION_TEMPLATE, 
-            title=f'Pregunta {QUESTION_ROUTES.index(QUESTION_ALCOHOL)}/11',
-            question="Quin grau d'alcohol prefereixes?",
+            title=f'Question {QUESTION_ROUTES.index(QUESTION_ALCOHOL)}/11',
+            question="What level of alcohol do you prefer?",
             values=formatted_ranges
         )
     
@@ -259,7 +259,7 @@ def recom_question_alcohol():
             return redirect(url_for(get_next_question(QUESTION_ALCOHOL)))
         alcohol_ranges = request.form.getlist('question')
         if not alcohol_ranges:
-            flash("Has de respondre abans de continuar", 'warning')
+            flash("You must answer before continuing", 'warning')
             return redirect(url_for(QUESTION_ALCOHOL))
         
         parsed_ranges = []
@@ -295,8 +295,8 @@ def recom_question_country():
             return redirect(url_for(get_next_question(QUESTION_COUNTRY)))
         return render_template(
             QUESTION_TEMPLATE, 
-            title=f'Pregunta {QUESTION_ROUTES.index(QUESTION_COUNTRY)}/11',
-            question="Tens preferència per algun país concret?",
+            title=f'Question {QUESTION_ROUTES.index(QUESTION_COUNTRY)}/11',
+            question="Do you have a preference for a specific country?",
             values=countries
         )
     
@@ -305,7 +305,7 @@ def recom_question_country():
             return redirect(url_for(get_next_question(QUESTION_COUNTRY)))
         answer = request.form.getlist('question')
         if not answer:
-            flash("Has de respondre abans de continuar", 'warning')
+            flash("You must answer before continuing", 'warning')
             return redirect(url_for(QUESTION_COUNTRY))
         
         session['countries'] = answer
@@ -330,8 +330,8 @@ def recom_question_region():
             return redirect(url_for(get_next_question(QUESTION_REGION)))
         return render_template(
             QUESTION_TEMPLATE, 
-            title=f'Pregunta {QUESTION_ROUTES.index(QUESTION_REGION)}/11',
-            question="Tens preferència per alguna regió concreta?",
+            title=f'Question {QUESTION_ROUTES.index(QUESTION_REGION)}/11',
+            question="Do you have a preference for a specific region?",
             values=regions
         )
     
@@ -340,7 +340,7 @@ def recom_question_region():
             return redirect(url_for(get_next_question(QUESTION_REGION)))
         answer = request.form.getlist('question')
         if not answer:
-            flash("Has de respondre abans de continuar", 'warning')
+            flash("You must answer before continuing", 'warning')
             return redirect(url_for(QUESTION_REGION))
         
         filtered_wines = Wine.query.filter(Wine.id.in_(session['filtered_wines']),
@@ -364,8 +364,8 @@ def recom_question_den_origin():
             return redirect(url_for(get_next_question(QUESTION_DEN_ORIGIN)))
         return render_template(
             QUESTION_TEMPLATE, 
-            title=f'Pregunta {QUESTION_ROUTES.index(QUESTION_DEN_ORIGIN)}/11',
-            question="Tens preferència per alguna d'aquestes denominacions d'origen?",
+            title=f'Question {QUESTION_ROUTES.index(QUESTION_DEN_ORIGIN)}/11',
+            question="Do you have a preference for any of these denominations of origin?",
             values=dens_origin
         )
     
@@ -375,7 +375,7 @@ def recom_question_den_origin():
         answer = request.form.getlist('question')
         
         if not answer:
-            flash("Has de respondre abans de continuar", 'warning')
+            flash("You must answer before continuing", 'warning')
             return redirect(url_for(QUESTION_DEN_ORIGIN))
         
         filtered_wines = Wine.query.filter(Wine.id.in_(session['filtered_wines']),
@@ -399,8 +399,8 @@ def recom_question_year():
             return redirect(url_for(get_next_question(QUESTION_YEAR)))
         return render_template(
             QUESTION_TEMPLATE, 
-            title=f'Pregunta {QUESTION_ROUTES.index(QUESTION_YEAR)}/11',
-            question="Tens un interès especial per algun d'aquests anys?",
+            title=f'Question {QUESTION_ROUTES.index(QUESTION_YEAR)}/11',
+            question="Do you have a special interest in any of these years?",
             values=years
         )
     
@@ -409,7 +409,7 @@ def recom_question_year():
             return redirect(url_for(get_next_question(QUESTION_YEAR)))
         answer = request.form.getlist('question')
         if not answer:
-            flash("Has de respondre abans de continuar", 'warning')
+            flash("You must answer before continuing", 'warning')
             return redirect(url_for(QUESTION_YEAR))
         
         filtered_wines = Wine.query.filter(Wine.id.in_(session['filtered_wines']),
@@ -439,8 +439,8 @@ def recom_question_grape():
 
         return render_template(
             QUESTION_TEMPLATE, 
-            title=f'Pregunta {QUESTION_ROUTES.index(QUESTION_GRAPE)}/11',
-            question='Quins tipus de raïm prefereixes?',
+            title=f'Question {QUESTION_ROUTES.index(QUESTION_GRAPE)}/11',
+            question='Which types of grapes do you prefer?',
             values=grapes
         )
     
@@ -449,7 +449,7 @@ def recom_question_grape():
             return redirect(url_for(get_next_question(QUESTION_GRAPE)))
         answer = request.form.getlist('question')
         if not answer:
-            flash("Has de respondre abans de continuar", 'warning')
+            flash("You must answer before continuing", 'warning')
             return redirect(url_for(QUESTION_GRAPE))
         
         filtered_wines = (
@@ -482,8 +482,8 @@ def recom_question_food():
             return redirect(url_for(RESULT))
         return render_template(
             QUESTION_TEMPLATE, 
-            title=f'Pregunta {QUESTION_ROUTES.index(QUESTION_FOOD)}/11',
-            question='Estàs pensant acompanyar un menjar concret?',
+            title=f'Question {QUESTION_ROUTES.index(QUESTION_FOOD)}/11',
+            question='Are you thinking of pairing with a specific food?',
             values=foods,
             last=True
         )

@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Registra el teu usuari</h2>
+  <h2>Register your user</h2>
   <form method="POST">
     <div class="mb-3 col-4">
-      <label for="username" class="form-label">Usuari</label>
+      <label for="username" class="form-label">User</label>
       <input type="text" class="form-control" id="username" name="username" required>
     </div>
     <div class="mb-3 col-4">
-      <label for="password" class="form-label">Contrasenya</label>
+      <label for="password" class="form-label">Password</label>
       <input type="password" class="form-control" id="password" name="password" required>
     </div>
-    <button type="submit" class="btn btn-secondary">Registrar</button>
+    <button type="submit" class="btn btn-secondary">Register</button>
   </form>
 {% endblock %}

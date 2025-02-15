@@ -10,7 +10,7 @@
 				<div class="form-check pb-1">
 					<input class="form-check-input select-all" type="checkbox" id="select-all">
 					<label class="form-check-label" style="color:gray;" for="select-all">
-							- Selecciona tot -
+							- Select all -
 					</label>
 				</div>
 				{% for value in values %}
@@ -24,11 +24,11 @@
 			</div>	
 		</fieldset>
 		{% if not last %}
-			<button type="submit" name="next" class="btn btn-primary mb-5">Següent</button>
+			<button type="submit" name="next" class="btn btn-primary mb-5">Next</button>
 		{% endif %}
-			<button type="submit" name="result" class="btn btn-primary mb-5 ms-3">Recomana</button>
+			<button type="submit" name="result" class="btn btn-primary mb-5 ms-3">Recommend</button>
 		{% if not last %}
-			<button type="submit" name="skip" class="btn btn-secondary mb-5 ms-3">Saltar pregunta</button>
+			<button type="submit" name="skip" class="btn btn-secondary mb-5 ms-3">Skip Question</button>
 		{% endif %}
 	</form>
 
