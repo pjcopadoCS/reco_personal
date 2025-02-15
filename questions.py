@@ -5,7 +5,7 @@ from sqlalchemy import or_
 from constants import Category
 from constants import Profile as ProfileEnum
 
-from models import Profile, Grape, Food, UserInfo, Wine, db
+from models import Profile, Grape, Food, UserInfo, Wine, db, Compras
 from utils import (
     country_filter_by_profile, delete_session_info, 
     user_variety_filter,
@@ -508,6 +508,14 @@ def result():
     filtered_wine_ids = session.get('filtered_wines', [])
     query = Wine.query.filter(Wine.id.in_(filtered_wine_ids))
     filtered_wines = query.all()
+
+    compras = Compras.query.all()
+    for compra in compras:
+        if compra.user_id == current_user.id:
+            for wine in filtered_wines:
+                if wine.id == compra.wine_id:
+                    filtered_wines.remove(wine)
+
     expected_questions = [
         QUESTION_1,
         QUESTION_TASTE,

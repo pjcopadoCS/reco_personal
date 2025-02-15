@@ -75,7 +75,9 @@ class Compras(db.Model):
      wine_id = Column('user_id', Integer, ForeignKey('users.id', ondelete='CASCADE'), primary_key=True)
      user_id = Column('wine_id', Integer,ForeignKey('wines.id', ondelete='CASCADE'), primary_key=True)
      o_wine_id = Column('o_user_id', Integer)
+     code = Column(String(80), nullable=False)
      o_user_id = Column('o_wine_id', Integer)
+     username = Column(String(50), nullable=False)
 
 
 purchase = Table(

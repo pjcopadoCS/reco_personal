@@ -155,10 +155,14 @@ def insert_users():
 #     wine_id = Column(Integer, ForeignKey('wines.id', ondelete='CASCADE'), primary_key=True)
 
 def create_purchase(row):
-    return Compras(user_id=int(row['user_id']),
-                   o_user_id=int(row['user_id']),
-                   wine_id=int(row['wine_id']),
-                   o_wine_id=int(row['wine_id']))
+    user = db.session.query(User).filter(User.username == row['username']).first()
+    wine = db.session.query(Wine).filter(Wine.code == row['code']).first()
+    return Compras(user_id=user.id,
+                   o_user_id=user.id,
+                   code = wine.code,
+                   wine_id=wine.id,
+                   o_wine_id=wine.id,
+                   username=user.username)
     #return purchase(user_id=row['user_id'], wine_id=row['wine_id'])
 
 def insert_purchases():
