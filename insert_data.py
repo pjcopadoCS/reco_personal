@@ -29,11 +29,11 @@ def create_wine(row, grapes, foods):
     code = row['code']
     name = row['title']
     category = row['category']
-    category = translate_to_catalan(category)
+    #category = translate_to_catalan(category)
     taste = row['type'] if not pd.isna(row['type']) else None
-    taste = translate_to_catalan(taste) 
+    #taste = translate_to_catalan(taste)
     country = row['country']
-    country = translate_to_catalan(country)
+    #country = translate_to_catalan(country)
     region = row['winery_region'] if not pd.isna(row['winery_region']) else None
     den_origin = row['denomination_of_origin'] if not pd.isna(row['denomination_of_origin']) else None
     year = row['seniority'] if not pd.isna(row['seniority']) else None
@@ -59,7 +59,8 @@ def get_food_list(row, translation_cache, food_cache):
         if food_name in translation_cache:
             translated_food = translation_cache[food_name]
         else:
-            translated_food = translate_to_catalan(food_name)
+            #translated_food = translate_to_catalan(food_name)
+            translated_food = food_name
             translation_cache[food_name] = translated_food
         
         if translated_food != 'nan':
@@ -157,6 +158,7 @@ def insert_users():
 def create_purchase(row):
     user = db.session.query(User).filter(User.username == row['username']).first()
     wine = db.session.query(Wine).filter(Wine.code == row['code']).first()
+    user.wines.append(wine)
     return Compras(user_id=user.id,
                    o_user_id=user.id,
                    code = wine.code,

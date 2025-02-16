@@ -1,38 +1,38 @@
 from enum import Enum
 
 class Gender(str, Enum):
-    MALE = 'Male'
-    FEMALE = 'Female'
-    OTHER = 'Other'
+    HOME = 'Home'
+    DONA = 'Dona'
+    ALTRES = 'Altres'
 
 class Age(str, Enum):
-    YOUNG = 'Young'
-    MIDDLE_AGED = 'Middle-aged'
-    OLD = 'Old'
+    JOVE = 'Jove'
+    MITJA = 'Mitjana edat'
+    GRAN = 'Gran'
 
 class Profile(str, Enum):
     EXPERT = 'Expert'
-    CURIOUS = 'Curious'
-    PRAGMATIC = 'Pragmatic'
-    OCCASIONAL = 'Occasional'
+    CURIOS = 'Curiós'
+    PRAGMATIC = 'Pragmàtic'
+    OCASIONAL = 'Ocasional'
 
 class Category(str, Enum):
-    RED = 'Red'
-    WHITE = 'White'
-    ROSE = 'Rose'
-    SPARKLING = 'Sparkling'
+    NEGRE = 'Negre'
+    BLANC = 'Blanc'
+    ROSAT = 'Rosat'
+    ESPUMOS = 'Espumós'
 
 class Aroma(str, Enum):
-    FRUITY = 'Fruity'
-    SPICY = 'Spicy'
+    AFRUITAT = 'Afruitat'
+    ESPECIAT = 'Especiat'
 
 class Ripening(str, Enum):
-    YOUNG = 'Young'
-    BARREL = 'Barrel'
+    JOVE = 'Jove'
+    BARRIL = 'Barril'
 
 class Body(str, Enum):
-    LIGHT = 'Light'
-    FULL_BODY = 'Full body'
+    LLEUGER = 'Lleuger'
+    AMB_COS = 'Amb cos'
 
 # Category
 RED = 'Red'

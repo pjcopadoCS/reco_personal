@@ -1,24 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Inserir vins</h2>
+  <h2>Insert wines</h2>
   <form method="POST">
     <div class="mb-3 col-4">
-      <label for="wine" class="form-label mt-2">Codi del vi</label>
+      <label for="wine" class="form-label mt-2">Wine code</label>
       <input type="text" class="form-control" id="wine" name="wine" required>
     </div>
-    <button type="submit" class="btn btn-primary mb-4" name="add">Inserir el vi</button>
+    <button type="submit" class="btn btn-primary mb-4" name="add">Insert wine</button>
   </form>
-  <h3>Vins comprats per l'usuari {{ current_user.username.capitalize() }}:</h3>
+  <h3>Wines purchased by user {{ current_user.username.capitalize() }}:</h3>
   <div class="col mt-3">
     <ul class="list-group list-group-flush">
       {% for wine in wines %}
         <li class="list-group-item">
-          <p><b>Codi: </b>{{ wine.code }}</p>
-          <p><b>Nom: </b>{{ wine.name }}</p>
+          <p><b>Code: </b>{{ wine.code }}</p>
+          <p><b>Name: </b>{{ wine.name }}</p>
           <form method="POST" style="display:inline;">
             <input type="hidden" name="wine" value="{{ wine.code }}">
-            <button type="submit" class="btn btn-outline-danger btn-sm mb-3" name="remove">Elimina</button>
+            <button type="submit" class="btn btn-outline-danger btn-sm mb-3" name="remove">Remove</button>
         </form>
         </li>
       {% endfor %}

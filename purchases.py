@@ -1,6 +1,6 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
-from models import Wine, db
+from models import Wine,Compras, db
 
 purchases_bp = Blueprint('purchases', __name__)
 
@@ -15,15 +15,23 @@ def insert_delete_wines():
         wine = Wine.query.filter_by(code=code).first()
         if 'add' in request.form:
             if not wine:
-                flash(f'El vi amb el codi {code} no existeix', 'danger')
+                flash(f'Wine with code {code} does not exist', 'danger')
             elif wine not in current_user.wines:
-                current_user.wines.append(wine)
+                user = current_user
+                user.wines.append(wine)
+                compra =Compras(user_id=user.id,
+                        o_user_id=user.id,
+                        code=wine.code,
+                        wine_id=wine.id,
+                        o_wine_id=wine.id,
+                        username=user.username)
+                db.session.add(compra)
                 db.session.commit()
-                flash(f'Vi {code} insertit correctament', 'success')
+                flash(f'Wine {code} inserted correctly', 'success')
             else:
-                flash(f"El vi {code} ja figura a la llista de compres de l'usuari {current_user.username.capitalize()}", 'warning')
+                flash(f"This wine {code} already inserted in purchases of user {current_user.username.capitalize()}", 'warning')
         else:
             current_user.wines.remove(wine)
             db.session.commit()
-            flash(f'Vi {code} eliminat correctament', 'success')
+            flash(f'Wine {code} removed correctly', 'success')
         return redirect(url_for('purchases.insert_delete_wines'))
