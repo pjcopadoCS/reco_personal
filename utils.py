@@ -64,7 +64,7 @@ def has_profile(user, profile_name):
 
 def variety_filter_by_profile(profile_name, query):
     varieties = []
-    if profile_name == Profile.CURIOS:
+    if profile_name == Profile.CURIOUS:
         varieties = exotic_varieties
     elif profile_name == Profile.EXPERT:
         varieties = noble_varieties
@@ -74,7 +74,7 @@ def variety_filter_by_profile(profile_name, query):
 
 def country_filter_by_profile(profile_name, query):
     countries = []
-    if profile_name == Profile.CURIOS:
+    if profile_name == Profile.CURIOUS:
         countries = emerging_countries
     elif profile_name == Profile.EXPERT:
         countries = recognized_countries
@@ -88,19 +88,19 @@ def price_filter_by_profile(profile_name, query):
 
 def user_variety_filter(user, query):
     varieties = []
-    if user.info.gender == Gender.HOME:
-        if user.info.age == Age.JOVE:
+    if user.info.gender == Gender.MALE:
+        if user.info.age == Age.YOUNG:
             varieties = varieties_young_men
-        elif user.info.age == Age.MITJA:
+        elif user.info.age == Age.MIDDLE_AGED:
             varieties = varieties_mid_men
-        elif user.info.age == Age.GRAN:
+        elif user.info.age == Age.OLD:
             varieties = varieties_old_men
-    elif user.info.gender == Gender.DONA:
-        if user.info.age == Age.JOVE:
+    elif user.info.gender == Gender.FEMALE:
+        if user.info.age == Age.YOUNG:
             varieties = varieties_young_women
-        elif user.info.age == Age.MITJA:
+        elif user.info.age == Age.MIDDLE_AGED:
             varieties = varieties_mid_women
-        elif user.info.age == Age.GRAN:
+        elif user.info.age == Age.OLD:
             varieties = varieties_old_women
 
     return query.join(Wine.grapes).filter(Grape.name.in_(varieties))

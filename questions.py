@@ -45,14 +45,12 @@ QUESTION_ROUTES = [
     RESULT
 ]
 
-
 def get_next_question(current_question):
     try:
         current_index = QUESTION_ROUTES.index(current_question)
         return QUESTION_ROUTES[current_index + 1]
     except (ValueError, IndexError):
         return 'questions.result'
-
 
 @questions_bp.route('/initial_questions', methods=['GET', 'POST'])
 @login_required
@@ -64,7 +62,9 @@ def initial_questions():
         gender = request.form.get('question1')
         age = request.form.get('question2')
 
-        profiles = request.form.getlist('question3')
+        #profiles = request.form.getlist('question3')
+        profiles = ['Curious', 'Pragmatic', 'Expert', 'Occasional']
+
         profiles_list = []
         for profile in profiles:
             profile_obj = Profile.query.filter_by(name=profile).first()
@@ -77,7 +77,6 @@ def initial_questions():
         db.session.commit()
         return redirect(url_for('home'))
     return render_template('initial_questions.html')
-
 
 @questions_bp.route('/recom_question1', methods=['GET', 'POST'])
 @login_required
@@ -112,7 +111,6 @@ def recom_question1():
         else:
             return redirect(url_for(RESULT))
 
-
 @questions_bp.route('/recom_question_taste', methods=['GET', 'POST'])
 @login_required
 def recom_question_taste():
@@ -145,7 +143,6 @@ def recom_question_taste():
             return redirect(url_for(get_next_question(QUESTION_TASTE)))
         else:
             return redirect(url_for(RESULT))
-
 
 @questions_bp.route('/recom_question_range', methods=['GET', 'POST'])
 @login_required
@@ -533,8 +530,8 @@ def result():
     if len(filtered_wines) < 5 or all(question in answered_questions for question in expected_questions):
         return render_template('result.html', wines=filtered_wines)
     if QUESTION_GRAPE not in answered_questions:
-        if has_profile(current_user, ProfileEnum.CURIOS):
-            query = variety_filter_by_profile(ProfileEnum.CURIOS, query)
+        if has_profile(current_user, ProfileEnum.CURIOUS):
+            query = variety_filter_by_profile(ProfileEnum.CURIOUS, query)
         elif has_profile(current_user, ProfileEnum.EXPERT):
             query = variety_filter_by_profile(ProfileEnum.EXPERT, query)
         else:

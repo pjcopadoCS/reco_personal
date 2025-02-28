@@ -43,7 +43,6 @@ user_profile = Table(
     Column('profile_id', Integer, ForeignKey('profiles.id', ondelete='CASCADE'), primary_key=True)
 )
 
-
 class Wine(db.Model):
     __tablename__ = 'wines'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -79,7 +78,6 @@ class Compras(db.Model):
      o_user_id = Column('o_wine_id', Integer)
      username = Column(String(50), nullable=False)
 
-
 purchase = Table(
      'purchases', db.Model.metadata,
      Column('user_id', Integer, ForeignKey('users.id', ondelete='CASCADE'), primary_key=True),
@@ -106,7 +104,6 @@ class Food(db.Model):
     name = Column(String(100), nullable=False, unique=True)
     # Relationships
     wines = relationship('Wine', secondary='wine_foods', back_populates='foods', passive_deletes=True)
-
 
 wine_food = Table(
     'wine_foods', db.Model.metadata,
