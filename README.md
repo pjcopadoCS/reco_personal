@@ -3,7 +3,7 @@
 ## Descripció
 El Recomanador personalitzat de vins és una aplicació que ajuda els usuaris a trobar vins que s'adeqüin al seu perfil fent el nombre de preguntes necessàries per obtenir tot d'informació detallada de l'usuari. Utilitzant tècniques de filtratge basat en contingut, coneixement expert amb regles específiques i una gestió avançada dels usuaris a través d'una base de dades, l'aplicació pot oferir suggeriments de vins altament personalitzats que s'ajustin als gustos i criteris específics dels usuaris.
 
-Podeu accedir al recomanador utilitzant aquest enllaç: https://api-recomanador-personalitzat.onrender.com
+Podeu accedir al recomanador utilitzant aquest enllaç: https://reco-personal.onrender.com/
 
 ## Instal·lació local
 
@@ -52,8 +52,10 @@ py ./app.py
 ### 5. Obre el navegador i ves a http://localhost:5000.
 
 
-## Autor
-- Pol Fradera Insa - [GitHub](https://github.com/pol-fradera)
+## Autors
+- Àngela Nebot (angela.nebot@upc.edu, angela@cs.upc.edu)
+- Francisco José Mugica (francisco.jose.mugica@upc.edu)
+- Pedro Jesús Copado Méndez (pedro.jesus.copado@upc.edu, pcopado@cs.upc.edu)
 
 
 ## Informació addicional
