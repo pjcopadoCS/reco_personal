@@ -13,7 +13,7 @@ Podeu accedir al recomanador utilitzant aquest enllaç: https://reco-personal.on
 ### Passos
 #### 1. Clona el repositori:
 ```bash
-git clone https://github.com/pol-fradera/api_recomanador_personalitzat.git
+git clone https://github.com/pjcopadoCS/reco_personal
 cd api_recomanador
 ```
 
